@@ -12,7 +12,7 @@ class CampusPress_Checks implements themecheck {
 			'/remove_role\s?\(/' => __( 'Do not remove roles.', 'theme-check' ),
 			'/flush_rules|flush_rewrite_rules/' => __( 'Do not flush rewrite rules.', 'theme-check' ),
 			'/wp_cache_flush/' => __( 'Do not flush cache', 'theme-check' ),
-			'/chdir|chroot|closedir|dir\s?\(|getcwd|opendir|readdir|rewinddir|scandir/' => __( 'Directory disk operations are not allowed', 'theme-check' ),
+			'/chdir|chroot|closedir|dir\s?\(|glob\s?\(|getcwd|opendir|readdir|rewinddir|scandir/' => __( 'Directory disk operations are not allowed', 'theme-check' ),
 			'/googlesyndication\.com/' => __( 'Loading content from googlesyndication.com is not allowed', 'theme-check' ),
 			'/ALLOW_EXTERNAL/' => __( 'Changing ALLOW_EXTERNAL constant is not allowed', 'theme-check' ),
 			'/CURLOPT_CONNECTTIMEOUT/' => __( 'Do not set CURLOPT_CONNECTTIMEOUT constant', 'theme-check' ),
