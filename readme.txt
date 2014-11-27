@@ -14,7 +14,7 @@ The tests are run through a simple admin menu and all results are displayed at o
 
 = How to use it? =
 
-1. Clone or download ZIP of repository, upload it to your wp-content/plugins and activate it in your local development installation.
+1. Clone or download ZIP of latest version [https://github.com/igmoweb/theme-check/releases], upload it to your wp-content/plugins and activate it in your local development installation.
 2. A new menu should appear under Appereance menu called "Theme Check".
 3. Just select the theme in the selection box and click on "Check it!"
 
