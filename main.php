@@ -67,7 +67,7 @@ function check_main( $theme ) {
 		 }
 		echo '</div><!-- .theme-info-->';
 
-		$plugins = get_plugins( '/theme-check' );
+		$plugins = get_plugins( '/campuspress-theme-check' );
 		$version = explode( '.', $plugins['theme-check.php']['Version'] );
 		echo '<p>' . sprintf(__(' Running <strong>%1$s</strong> tests against <strong>%2$s</strong> using Guidelines Version: <strong>%3$s</strong> Plugin revision: <strong>%4$s</strong>', 'theme-check'), $checkcount, $data[ 'Title' ], $version[0], $version[1] ) . '</p>';
 		$results = display_themechecks();
