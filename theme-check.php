@@ -1,12 +1,19 @@
 <?php
 /*
-Plugin Name: Theme Check
-Plugin URI: http://ottopress.com/wordpress-plugins/theme-check/
+Plugin Name: CampusPress Theme Check
+Plugin URI: https://github.com/igmoweb/theme-check
 Description: A simple and easy way to test your theme for all the latest WordPress standards and practices. A great theme development tool!
-Author: Pross, Otto42
-Author URI: http://ottopress.com
-Version: 20140929.1
+Author: igmoweb
+Author URI: http://campuspress.com
+Version: 1.0
+Requires at least: 3.8
+Tested up to: 4.1
 Text Domain: theme-check
+
+This plugin is a fork of Theme Check created by Otto42 and pross. There are just a few checks more for CampusPress users.
+
+Please, do not use this plugin if you don't have a site in CampusPress network.
+You can found the original Theme Check here: https://wordpress.org/plugins/theme-check/
 */
 
 class ThemeCheckMain {
