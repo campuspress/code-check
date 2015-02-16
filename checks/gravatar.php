@@ -1,13 +1,13 @@
 <?php
 
-class GravatarCheck implements themecheck {
+class CampusPress_GravatarCheck implements themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
 
 		$php = implode( ' ', $php_files );
 
-		checkcount();
+		campuspress_checkcount();
 
 		$ret = true;
 

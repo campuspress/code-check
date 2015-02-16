@@ -2,13 +2,13 @@
 
 // check for various I18N errors
 
-class I18NCheck implements themecheck {
+class CampusPress_I18NCheck implements themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
 		$ret = true;
 		$error = '';
-		checkcount();
+		campuspress_checkcount();
 
 		// make sure the tokenizer is available
 		if ( !function_exists( 'token_get_all' ) ) return true;
@@ -42,8 +42,8 @@ class I18NCheck implements themecheck {
 				if (!empty($tokens)) {
 					foreach ($tokens as $token) {
 						if (is_array($token) && in_array( $token[0], array( T_VARIABLE ) ) ) {
-							$filename = tc_filename( $php_key );
-							$grep = tc_grep( ltrim( $match ), $php_key );
+							$filename = campuspress_tc_filename( $php_key );
+							$grep = campuspress_tc_grep( ltrim( $match ), $php_key );
 							preg_match( '/[^\s]*\s[0-9]+/', $grep, $line);
 							$error = ( !strpos( $error, $line[0] ) ) ? $grep : '';
 							$this->error[] = sprintf('<span class="tc-lead tc-recommended">'.__('RECOMMENDED','theme-check').'</span>: '.__('Possible variable <strong>%1$s</strong> found in translation function in <strong>%2$s</strong>. Translation function calls must NOT contain PHP variables. %3$s','theme-check'),

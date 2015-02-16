@@ -4,14 +4,14 @@
  * Checks for the Customizer.
  */
 
-class CustomizerCheck implements themecheck {
+class CampusPress_CustomizerCheck implements themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files) {
 
 		$ret = true;
 
-		checkcount();
+		campuspress_checkcount();
 
 		/**
 		 * Check whether every Customizer setting has a sanitization callback set.

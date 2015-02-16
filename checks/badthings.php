@@ -1,5 +1,5 @@
 <?php
-class Bad_Checks implements themecheck {
+class CampusPress_Bad_Checks implements themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
@@ -21,11 +21,11 @@ class Bad_Checks implements themecheck {
 
 		foreach ( $php_files as $php_key => $phpfile ) {
 			foreach ( $checks as $key => $check ) {
-			checkcount();
+			campuspress_checkcount();
 				if ( preg_match( $key, $phpfile, $matches ) ) {
-					$filename = tc_filename( $php_key );
+					$filename = campuspress_tc_filename( $php_key );
 					$error = ltrim( trim( $matches[0], '(' ) );
-					$grep = tc_grep( $error, $php_key );
+					$grep = campuspress_tc_grep( $error, $php_key );
 					$this->error[] = sprintf('<span class="tc-lead tc-warning">'. __( 'WARNING', 'theme-check' ) . '</span>: Found <strong>%1$s</strong> in the file <strong>%2$s</strong>. %3$s. %4$s', $error, $filename, $check, $grep );
 					$ret = false;
 				}
@@ -40,11 +40,11 @@ class Bad_Checks implements themecheck {
 
 		foreach ( $other_files as $php_key => $phpfile ) {
 			foreach ( $checks as $key => $check ) {
-				checkcount();
+				campuspress_checkcount();
 				if ( preg_match( $key, $phpfile, $matches ) ) {
-					$filename = tc_filename( $php_key );
+					$filename = campuspress_tc_filename( $php_key );
 					$error = ltrim( rtrim( $matches[0],'(' ) );
-					$grep = tc_grep( $error, $php_key );
+					$grep = campuspress_tc_grep( $error, $php_key );
 					$this->error[] = sprintf(__('<span class="tc-lead tc-warning">WARNING</span>: Found <strong>%1$s</strong> in the file <strong>%2$s</strong>. %3$s.%4$s', 'theme-check'), $error, $filename, $check, $grep);
 					$ret = false;
 				}

@@ -4,7 +4,7 @@
  * Checks for the use of deprecated function parameters.
  */
 
-class More_Deprecated implements themecheck {
+class CampusPress_More_Deprecated implements themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
@@ -41,14 +41,14 @@ class More_Deprecated implements themecheck {
 		foreach ( $php_files as $php_key => $php_file ) {
 			// Loop through all functions.
 			foreach ( $checks as $function => $data ) {
-				checkcount();
+				campuspress_checkcount();
 
 				// Loop through the parameters and look for all function/parameter combinations.
 				foreach ( $data as $parameter => $replacement ) {
 					if ( preg_match( '/' . $function . '\(\s*("|\')' . $parameter . '("|\')\s*\)/', $php_file, $matches ) ) {
-						$filename      = tc_filename( $php_key );
+						$filename      = campuspress_tc_filename( $php_key );
 						$error         = ltrim( rtrim( $matches[0], '(' ) );
-						$grep          = tc_grep( $error, $php_key );
+						$grep          = campuspress_tc_grep( $error, $php_key );
 						$this->error[] = sprintf( '<span class="tc-lead tc-required">' . __( 'REQUIRED', 'theme-check' ) . '</span>: ' . __( '<strong>%1$s</strong> was found in the file <strong>%2$s</strong>. Use <strong>%3$s</strong> instead.%4$s', 'theme-check' ), $error, $filename, $replacement, $grep );
 						$ret           = false;
 					}

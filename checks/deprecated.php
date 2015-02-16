@@ -1,6 +1,6 @@
 <?php
 
-class Deprecated implements themecheck {
+class CampusPress_Deprecated implements themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
@@ -224,14 +224,14 @@ class Deprecated implements themecheck {
 		);
 		foreach ( $php_files as $php_key => $phpfile ) {
 			foreach ( $checks as $alt => $check ) {
-				checkcount();
+				campuspress_checkcount();
 				$key = key( $check );
 				$alt = $check[ $key ];
 				if ( preg_match( '/[\s?]' . $key . '\(/', $phpfile, $matches ) ) {
-					$filename = tc_filename( $php_key );
+					$filename = campuspress_tc_filename( $php_key );
 					$error = ltrim( rtrim( $matches[0], '(' ) );
 					$version = $check[0];
-					$grep = tc_grep( $error, $php_key );
+					$grep = campuspress_tc_grep( $error, $php_key );
 
 					// Point out the deprecated function.
 					$error_msg = sprintf(

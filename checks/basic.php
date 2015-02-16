@@ -1,7 +1,7 @@
 <?php
 
 // do some basic checks for strings
-class Basic_Checks implements themecheck {
+class CampusPress_Basic_Checks implements themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files) {
@@ -26,7 +26,7 @@ class Basic_Checks implements themecheck {
 			);
 
 		foreach ($checks as $key => $check) {
-			checkcount();
+			campuspress_checkcount();
 			if ( !preg_match( '/' . $key . '/i', $php ) ) {
 				if ( $key === 'add_theme_support\(\s?("|\')automatic-feed-links("|\')\s?\)' ) $key = __( 'add_theme_support( \'automatic-feed-links\' )', 'theme-check');
 				if ( $key === 'wp_enqueue_script\(\s?("|\')comment-reply("|\')' ) $key = __( 'wp_enqueue_script( \'comment-reply\' )', 'theme-check');

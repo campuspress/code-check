@@ -1,6 +1,6 @@
 <?php
 
-class Constants implements themecheck {
+class CampusPress_Constants implements themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
@@ -16,11 +16,11 @@ class Constants implements themecheck {
 
 		foreach ( $php_files as $php_key => $phpfile ) {
 			foreach ( $checks as $key => $check ) {
-				checkcount();
+				campuspress_checkcount();
 				if ( preg_match( '/[\s|]' . $key . '/', $phpfile, $matches ) ) {
-					$filename = tc_filename( $php_key );
+					$filename = campuspress_tc_filename( $php_key );
 					$error = ltrim( rtrim( $matches[0], '(' ) );
-					$grep = tc_grep( $error, $php_key );
+					$grep = campuspress_tc_grep( $error, $php_key );
 					$this->error[] = sprintf('<span class="tc-lead tc-recommended">'.__('RECOMMENDED','theme-check').'</span>: '.__('<strong>%1$s</strong> was found in the file <strong>%2$s</strong>. Use <strong>%3$s</strong> instead.%4$s', 'theme-check'), $error, $filename, $check, $grep );
 				}
 			}

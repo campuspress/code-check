@@ -1,5 +1,5 @@
 <?php
-class WormCheck implements themecheck {
+class CampusPress_WormCheck implements themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
@@ -20,11 +20,11 @@ class WormCheck implements themecheck {
 
 		foreach ( $php_files as $php_key => $phpfile ) {
 			foreach ( $checks as $key => $check ) {
-				checkcount();
+				campuspress_checkcount();
 				if ( preg_match( $key, $phpfile, $matches ) ) {
-					$filename = tc_filename( $php_key );
+					$filename = campuspress_tc_filename( $php_key );
 					$error = $matches[0];
-					$grep = tc_grep( $error, $php_key );
+					$grep = campuspress_tc_grep( $error, $php_key );
 					$this->error[] = sprintf('<span class="tc-lead tc-warning">'. __( 'WARNING', 'theme-check') . '</span>: <strong>%1$s</strong> %2$s%3$s', $filename, $check, $grep );
 					$ret = false;
 				}

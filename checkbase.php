@@ -25,7 +25,7 @@ foreach (glob(dirname(__FILE__). "/{$dir}/*.php") as $file) {
 
 do_action('themecheck_checks_loaded');
 
-function run_themechecks($php, $css, $other) {
+function campuspress_run_themechecks($php, $css, $other) {
 	global $themechecks;
 	$pass = true;
 	foreach($themechecks as $check) {
@@ -36,7 +36,7 @@ function run_themechecks($php, $css, $other) {
 	return $pass;
 }
 
-function display_themechecks() {
+function campuspress_display_themechecks() {
 	$results = '';
 	global $themechecks;
 	$errors = array();
@@ -54,9 +54,9 @@ function display_themechecks() {
 		foreach ($errors as $e) {
 
 		if ( defined( 'TC_TRAC' ) ) {
-			$results .= ( isset( $_POST['s_info'] ) && preg_match( '/INFO/', $e ) ) ? '' : '* ' . tc_trac( $e ) . "\r\n";
+			$results .= ( isset( $_POST['s_info'] ) && preg_match( '/INFO/', $e ) ) ? '' : '* ' . campuspress_tc_trac( $e ) . "\r\n";
 		} else {
-			$results .= ( isset( $_POST['s_info'] ) && preg_match( '/INFO/', $e ) ) ? '' : '<li>' . tc_trac( $e ) . '</li>';
+			$results .= ( isset( $_POST['s_info'] ) && preg_match( '/INFO/', $e ) ) ? '' : '<li>' . campuspress_tc_trac( $e ) . '</li>';
 			}
 		}
 	}
@@ -71,13 +71,13 @@ function display_themechecks() {
 	return $results;
 }
 
-function checkcount() {
+function campuspress_checkcount() {
 	global $checkcount;
 	$checkcount++;
 }
 
 // some functions theme checks use
-function tc_grep( $error, $file ) {
+function campuspress_tc_grep( $error, $file ) {
 	$lines = file( $file, FILE_IGNORE_NEW_LINES ); // Read the theme file into an array
 	$line_index = 0;
 	$bad_lines = '';
@@ -95,7 +95,7 @@ function tc_grep( $error, $file ) {
 	return str_replace( $error, '<span class="tc-grep">' . $error . '</span>', $bad_lines );
 }
 
-function tc_preg( $preg, $file ) {
+function campuspress_tc_preg( $preg, $file ) {
 	$lines = file( $file, FILE_IGNORE_NEW_LINES ); // Read the theme file into an array
 	$line_index = 0;
 	$bad_lines = '';
@@ -115,7 +115,7 @@ function tc_preg( $preg, $file ) {
 	return str_replace( $error, '<span class="tc-grep">' . $error . '</span>', $bad_lines );
 }
 
-function tc_strxchr($haystack, $needle, $l_inclusive = 0, $r_inclusive = 0){
+function campuspress_tc_strxchr($haystack, $needle, $l_inclusive = 0, $r_inclusive = 0){
 	if(strrpos($haystack, $needle)){
 		//Everything before last $needle in $haystack.
 		$left =  substr($haystack, 0, strrpos($haystack, $needle) + $l_inclusive);
@@ -131,12 +131,12 @@ function tc_strxchr($haystack, $needle, $l_inclusive = 0, $r_inclusive = 0){
 	}
 }
 
-function tc_filename( $file ) {
+function campuspress_tc_filename( $file ) {
 	$filename = ( preg_match( '/themes\/[a-z0-9]*\/(.*)/', $file, $out ) ) ? $out[1] : basename( $file );
 	return $filename;
 }
 
-function tc_trac( $e ) {
+function campuspress_tc_trac( $e ) {
 	$trac_left = array( '<strong>', '</strong>' );
 	$trac_right= array( "'''", "'''" );
 	$html_link = '/<a\s?href\s?=\s?[\'|"]([^"|\']*)[\'|"]>([^<]*)<\/a>/i';
@@ -150,7 +150,7 @@ function tc_trac( $e ) {
 	return $e;
 }
 
-function listdir( $dir ) {
+function campuspress_listdir( $dir ) {
 	$files = array();
 	$dir_iterator = new RecursiveDirectoryIterator( $dir );
 	$iterator = new RecursiveIteratorIterator($dir_iterator, RecursiveIteratorIterator::SELF_FIRST);
@@ -161,7 +161,7 @@ function listdir( $dir ) {
 	return $files;
 }
 
-function old_listdir( $start_dir='.' ) {
+function campuspress_old_listdir( $start_dir='.' ) {
 	$files = array();
 	if ( is_dir( $start_dir ) ) {
 		$fh = opendir( $start_dir );
@@ -170,7 +170,7 @@ function old_listdir( $start_dir='.' ) {
 			if ( strcmp( $file, '.' )==0 || strcmp( $file, '..' )==0 ) continue;
 			$filepath = $start_dir . '/' . $file;
 			if ( is_dir( $filepath ) )
-				$files = array_merge( $files, listdir( $filepath ) );
+				$files = array_merge( $files, campuspres_listdir( $filepath ) );
 			else
 				array_push( $files, $filepath );
 		}
@@ -184,7 +184,7 @@ function old_listdir( $start_dir='.' ) {
 	return $files;
 }
 
-function tc_print_r( $data ) {
+function campuspress_tc_print_r( $data ) {
 	$out = "\n<pre class='html-print-r'";
 	$out .= " style='border: 1px solid #ccc; padding: 7px;'>\n";
 	$out .= esc_html( print_r( $data, TRUE ) );
@@ -192,7 +192,7 @@ function tc_print_r( $data ) {
 	echo $out;
 }
 
-function get_theme_data_from_contents( $theme_data ) {
+function campuspress_get_theme_data_from_contents( $theme_data ) {
 	$themes_allowed_tags = array(
 		'a' => array(
 			'href' => array(),'title' => array()
@@ -261,7 +261,7 @@ function get_theme_data_from_contents( $theme_data ) {
  * 3.3/3.4 compat
  *
  */
-function tc_get_themes() {
+function campuspress_tc_get_themes() {
 
 	if ( ! class_exists( 'WP_Theme' ) )
 		return get_themes();
@@ -284,7 +284,7 @@ function tc_get_themes() {
 	return $wp_themes;
 }
 
-function tc_get_theme_data( $theme_file ) {
+function campuspress_tc_get_theme_data( $theme_file ) {
 
 	if ( ! class_exists( 'WP_Theme' ) )
 		return get_theme_data( $theme_file );

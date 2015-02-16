@@ -1,6 +1,6 @@
 <?php
 
-class WidgetsCheck implements themecheck {
+class CampusPress_WidgetsCheck implements themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
@@ -9,7 +9,7 @@ class WidgetsCheck implements themecheck {
 
 		// combine all the php files into one string to make it easier to search
 		$php = implode( ' ', $php_files );
-		checkcount();
+		campuspress_checkcount();
 
 		// no widgets registered or used...
 		if ( strpos( $php, 'register_sidebar' ) === false && strpos( $php, 'dynamic_sidebar' ) === false ) {

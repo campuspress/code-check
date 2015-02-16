@@ -1,6 +1,6 @@
 <?php
 
-class CommentPaginationCheck implements themecheck {
+class CampusPress_CommentPaginationCheck implements themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
@@ -8,7 +8,7 @@ class CommentPaginationCheck implements themecheck {
 
 		// combine all the php files into one string to make it easier to search
 		$php = implode( ' ', $php_files );
-		checkcount();
+		campuspress_checkcount();
 		if (strpos( $php, 'paginate_comments_links' ) === false &&
 		    (strpos( $php, 'next_comments_link' ) === false && strpos( $php, 'previous_comments_link' ) === false ) ) {
 

@@ -1,6 +1,6 @@
 <?php
 
-class PostPaginationCheck implements themecheck {
+class CampusPress_PostPaginationCheck implements themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
@@ -9,7 +9,7 @@ class PostPaginationCheck implements themecheck {
 
 		// combine all the php files into one string to make it easier to search
 		$php = implode( ' ', $php_files );
-		checkcount();
+		campuspress_checkcount();
 		if ( strpos( $php, 'posts_nav_link' ) === false && strpos( $php, 'paginate_links' ) === false &&
 		   ( strpos( $php, 'previous_posts_link' ) === false && strpos( $php, 'next_posts_link' ) === false )
 		   ) {

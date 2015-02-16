@@ -1,20 +1,20 @@
 <?php
-function check_main( $theme ) {
+function campuspress_check_main( $theme ) {
 	global $themechecks, $data, $themename;
 	$themename = $theme;
 	$theme = get_theme_root( $theme ) . "/$theme";
-	$files = listdir( $theme );
-	$data = tc_get_theme_data( $theme . '/style.css' );
+	$files = campuspress_listdir( $theme );
+	$data = campuspress_tc_get_theme_data( $theme . '/style.css' );
 	if ( $data[ 'Template' ] ) {
 		// This is a child theme, so we need to pull files from the parent, which HAS to be installed.
 		$parent = get_theme_root( $data[ 'Template' ] ) . '/' . $data['Template'];
-		if ( ! tc_get_theme_data( $parent . '/style.css' ) ) { // This should never happen but we will check while were here!
+		if ( ! campuspress_tc_get_theme_data( $parent . '/style.css' ) ) { // This should never happen but we will check while were here!
 			echo '<h2>' . sprintf(__('Parent theme <strong>%1$s</strong> not found! You have to have parent AND child-theme installed!', 'theme-check'), $data[ 'Template' ] ) . '</h2>';
 			return;
 		}
-		$parent_data = tc_get_theme_data( $parent . '/style.css' );
+		$parent_data = campuspress_tc_get_theme_data( $parent . '/style.css' );
 		$themename = basename( $parent );
-		$files = array_merge( listdir( $parent ), $files );
+		$files = array_merge( campuspress_listdir( $parent ), $files );
 	}
 
 	if ( $files ) {
@@ -31,7 +31,7 @@ function check_main( $theme ) {
 		}
 
 		// run the checks
-		$success = run_themechecks($php, $css, $other);
+		$success = campuspress_run_themechecks($php, $css, $other);
 
 		global $checkcount;
 
@@ -70,12 +70,12 @@ function check_main( $theme ) {
 		$plugins = get_plugins( '/campuspress-theme-check' );
 		$version = explode( '.', $plugins['theme-check.php']['Version'] );
 		echo '<p>' . sprintf(__(' Running <strong>%1$s</strong> tests against <strong>%2$s</strong> using Guidelines Version: <strong>%3$s</strong> Plugin revision: <strong>%4$s</strong>', 'theme-check'), $checkcount, $data[ 'Title' ], $version[0], $version[1] ) . '</p>';
-		$results = display_themechecks();
+		$results = campuspress_display_themechecks();
 		if ( !$success ) {
 			echo '<h2>' . sprintf(__('One or more errors were found for %1$s.', 'theme-check'), $data[ 'Title' ] ) . '</h2>';
 		} else {
 			echo '<h2>' . sprintf(__('%1$s passed the tests', 'theme-check'), $data[ 'Title' ] ) . '</h2>';
-			tc_success();
+			campuspress_tc_success();
 		}
 		if ( !defined( 'WP_DEBUG' ) || WP_DEBUG == false ) echo '<div class="updated"><span class="tc-fail">' . __('WARNING','theme-check') . '</span> ' . __( '<strong>WP_DEBUG is not enabled!</strong> Please test your theme with <a href="http://codex.wordpress.org/Editing_wp-config.php">debug enabled</a> before you upload!', 'theme-check' ) . '</div>';
 		echo '<div class="tc-box">';
@@ -86,7 +86,7 @@ function check_main( $theme ) {
 }
 
 
-function tc_intro() {
+function campuspress_tc_intro() {
 ?>
 	<h2><?php _e( 'About', 'theme-check' ); ?></h2>
 	<p><?php _e( "The theme check plugin is an easy way to test your theme and make sure it's up to spec with the latest theme review standards. With it, you can run all the same automated testing tools on your theme that WordPress.org uses for theme submissions.", 'theme-check' ); ?></p>
@@ -107,7 +107,7 @@ function tc_intro() {
 	<?php
 }
 
-function tc_success() {
+function campuspress_tc_success() {
 	?>
 	<div class="tc-success"><p><?php _e( 'Now your theme has passed the basic tests you need to check it properly using the test data before you upload to the WordPress Themes Directory.', 'theme-check' ); ?></p>
 	<p><?php _e( 'Make sure to review the guidelines at <a href="http://codex.wordpress.org/Theme_Review">Theme Review</a> before uploading a Theme.', 'theme-check' ); ?></p>
@@ -120,8 +120,8 @@ function tc_success() {
 	<?php
 }
 
-function tc_form() {
-	$themes = tc_get_themes();
+function campuspress_tc_form() {
+	$themes = campuspress_tc_get_themes();
 	echo '<form action="themes.php?page=themecheck" method="post">';
 	echo '<select name="themename">';
 	foreach( $themes as $name => $location ) {

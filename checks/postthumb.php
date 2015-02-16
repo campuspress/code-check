@@ -1,6 +1,6 @@
 <?php
 
-class PostThumbnailCheck implements themecheck {
+class CampusPress_PostThumbnailCheck implements themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
@@ -9,7 +9,7 @@ class PostThumbnailCheck implements themecheck {
 
 		// combine all the php files into one string to make it easier to search
 		$php = implode( ' ', $php_files );
-		checkcount();
+		campuspress_checkcount();
 
 		if ( strpos( $php, 'the_post_thumbnail' ) === false ) {
 			$this->error[] = '<span class="tc-lead tc-recommended">'.__('RECOMMENDED','theme-check').'</span>: '.__('No reference to <strong>the_post_thumbnail()</strong> was found in the theme. It is recommended that the theme implement this functionality instead of using custom fields for thumbnails.', 'theme-check' );

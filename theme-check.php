@@ -16,7 +16,7 @@ Please, do not use this plugin if you don't have a site in CampusPress network.
 You can found the original Theme Check here: https://wordpress.org/plugins/theme-check/
 */
 
-class ThemeCheckMain {
+class CampusPress_ThemeCheckMain {
 	function __construct() {
 		add_action( 'admin_init', array( $this, 'tc_i18n' ) );
 		add_action( 'admin_menu', array( $this, 'themecheck_add_page' ) );
@@ -53,15 +53,15 @@ class ThemeCheckMain {
 		echo '<div id="theme-check" class="wrap">';
 		echo '<div id="icon-themes" class="icon32"><br /></div><h2>Theme-Check</h2>';
 		echo '<div class="theme-check">';
-			tc_form();
+			campuspress_tc_form();
 		if ( !isset( $_POST[ 'themename' ] ) )  {
-			tc_intro();
+			campuspress_tc_intro();
 
 		}
 
 		if ( isset( $_POST[ 'themename' ] ) ) {
 			if ( isset( $_POST[ 'trac' ] ) ) define( 'TC_TRAC', true );
-			check_main( $_POST[ 'themename' ] );
+			campuspress_check_main( $_POST[ 'themename' ] );
 		}
 		echo '</div> <!-- .theme-check-->';
 		echo '</div>';

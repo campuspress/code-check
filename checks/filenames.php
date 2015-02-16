@@ -1,5 +1,5 @@
 <?php
-class File_Checks implements themecheck {
+class CampusPress_File_Checks implements themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
@@ -35,7 +35,7 @@ class File_Checks implements themecheck {
 		$musthave = array( 'index.php', 'comments.php', 'style.css' );
 		$rechave = array( 'readme.txt' => __( 'Please see <a href="http://codex.wordpress.org/Theme_Review#Theme_Documentation">Theme_Documentation</a> for more information.', 'theme-check' ) );
 
-		checkcount();
+		campuspress_checkcount();
 
 		foreach( $blacklist as $file => $reason ) {
 			if ( $filename = preg_grep( '/' . $file . '/', $filenames ) ) {

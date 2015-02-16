@@ -1,15 +1,15 @@
 <?php
-class Style_Tags implements themecheck {
+class CampusPress_Style_Tags implements themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
 
-		checkcount();
+		campuspress_checkcount();
 		$ret = true;
 		$filenames = array();
 
 		foreach( $css_files as $cssfile => $content ) {
-			if ( basename( $cssfile ) === 'style.css' ) $data = get_theme_data_from_contents( $content );
+			if ( basename( $cssfile ) === 'style.css' ) $data = campuspress_get_theme_data_from_contents( $content );
 		}
 
 		if ( !$data[ 'Tags' ] ) {

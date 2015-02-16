@@ -7,7 +7,7 @@
  *
  * See: http://make.wordpress.org/themes/guidelines/guidelines-theme-check/
  */
-class Title_Checks implements themecheck {
+class CampusPress_Title_Checks implements themecheck {
     protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
@@ -17,7 +17,7 @@ class Title_Checks implements themecheck {
 		/**
 		 * Look for <title> and </title> tags.
 		 */
-		checkcount();
+		campuspress_checkcount();
 		if ( false === strpos( $php, '<title>' ) || false === strpos( $php, '</title>' ) ) {
 			$this->error[] = '<span class="tc-lead tc-required">' . __( 'REQUIRED', 'theme-check').'</span>: ' . __( 'The theme needs to have <strong>&lt;title&gt;</strong> tags, ideally in the <strong>header.php</strong> file.', 'theme-check' );
 			$ret = false;
@@ -26,7 +26,7 @@ class Title_Checks implements themecheck {
 		/**
 		 * Check whether there is a call to wp_title().
 		 */
-		checkcount();
+		campuspress_checkcount();
 		if ( false === strpos( $php, 'wp_title(' ) ) {
 			$this->error[] = '<span class="tc-lead tc-required">' . __( 'REQUIRED', 'theme-check').'</span>: ' . __( 'The theme needs to have a call to <strong>wp_title()</strong>, ideally in the <strong>header.php</strong> file.', 'theme-check' );
 			$ret = false;
@@ -35,7 +35,7 @@ class Title_Checks implements themecheck {
 		/**
 		 * Check whether the the <title> tag contains something besides a call to wp_title().
 		 */
-		checkcount();
+		campuspress_checkcount();
 
 		foreach ( $php_files as $file_path => $file_content ) {
 			/**

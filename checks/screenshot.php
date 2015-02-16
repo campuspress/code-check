@@ -1,5 +1,5 @@
 <?php
-class Screenshot_Checks implements themecheck {
+class CampusPress_Screenshot_Checks implements themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
@@ -11,7 +11,7 @@ class Screenshot_Checks implements themecheck {
 			array_push( $filenames, strtolower( basename( $other_key ) ) );
 		}
 
-		checkcount();
+		campuspress_checkcount();
 
 		if ( in_array( 'screenshot.png', $filenames ) || in_array( 'screenshot.jpg', $filenames ) ) {
 

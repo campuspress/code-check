@@ -1,5 +1,5 @@
 <?php
-class AdminMenu implements themecheck {
+class CampusPress_AdminMenu implements themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files) {
@@ -16,10 +16,10 @@ class AdminMenu implements themecheck {
 
 		foreach ( $php_files as $php_key => $phpfile ) {
 			foreach ( $checks as $key => $check ) {
-				checkcount();
+				campuspress_checkcount();
 				if ( preg_match( $key, $phpfile, $matches ) ) {
-					$filename = tc_filename( $php_key );
-					$grep = ( isset( $matches[2] ) ) ? tc_grep( $matches[2], $php_key ) : tc_grep( $matches[1], $php_key );
+					$filename = campuspress_tc_filename( $php_key );
+					$grep = ( isset( $matches[2] ) ) ? campuspress_tc_grep( $matches[2], $php_key ) : campuspress_tc_grep( $matches[1], $php_key );
 					$this->error[] = sprintf('<span class="tc-lead tc-warning">'.__( 'WARNING', 'theme-check' ) . '</span>: <strong>%1$s</strong>. %2$s%3$s', $filename, $check, $grep );
 					$ret = false;
 				}
@@ -36,11 +36,11 @@ class AdminMenu implements themecheck {
 
 		foreach ( $php_files as $php_key => $phpfile ) {
 			foreach ( $checks as $key => $check ) {
-				checkcount();
+				campuspress_checkcount();
 				if ( preg_match( $key, $phpfile, $matches ) ) {
-					$filename = tc_filename( $php_key );
+					$filename = campuspress_tc_filename( $php_key );
 					$error = ltrim( rtrim( $matches[0], '(' ) );
-					$grep = tc_grep( $error, $php_key );
+					$grep = campuspress_tc_grep( $error, $php_key );
 					$this->error[] = sprintf('<span class="tc-lead tc-required">'.__( 'REQUIRED', 'theme-check' ) .'</span>: <strong>%1$s</strong>. %2$s%3$s', $filename, $check, $grep);
 					$ret = false;
 				}

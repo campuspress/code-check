@@ -1,5 +1,5 @@
 <?php
-class Style_Suggested implements themecheck {
+class CampusPress_Style_Suggested implements themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
@@ -7,7 +7,7 @@ class Style_Suggested implements themecheck {
 		// combine all the css files into one string to make it easier to search
 		$css = implode( ' ', $css_files );
 
-		checkcount();
+		campuspress_checkcount();
 		$ret = true;
 
 		$checks = array(

@@ -1,10 +1,10 @@
 <?php
 
-class EditorStyleCheck implements themecheck {
+class CampusPress_EditorStyleCheck implements themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
-		checkcount();
+		campuspress_checkcount();
 		$ret = true;
 
 		$php = implode( ' ', $php_files );

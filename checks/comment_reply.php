@@ -1,5 +1,5 @@
 <?php
-class Comment_Reply implements themecheck {
+class CampusPress_Comment_Reply implements themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files) {
@@ -7,7 +7,7 @@ class Comment_Reply implements themecheck {
 		$php = implode( ' ', $php_files );
 		$ret = true;
 
-		checkcount();
+		campuspress_checkcount();
 
 		if ( ! preg_match( '/wp_enqueue_script\(\s?("|\')comment-reply("|\')/i', $php ) ) {
 			if ( ! preg_match( '/comment-reply/', $php ) ) {

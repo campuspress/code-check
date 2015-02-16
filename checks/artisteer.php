@@ -1,6 +1,6 @@
 <?php
 
-class ArtisteerCheck implements themecheck {
+class CampusPress_ArtisteerCheck implements themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files) {
@@ -8,7 +8,7 @@ class ArtisteerCheck implements themecheck {
 		// combine all the php files into one string to make it easier to search
 		$php = implode( ' ', $php_files );
 
-		checkcount();
+		campuspress_checkcount();
 
 		$ret = true;
 		if (

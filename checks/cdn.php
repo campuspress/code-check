@@ -4,7 +4,7 @@
  * Checks for resources being loaded from CDNs.
  */
 
-class CDNCheck implements themecheck {
+class CampusPress_CDNCheck implements themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files) {
@@ -12,7 +12,7 @@ class CDNCheck implements themecheck {
 		$ret = true;
 		$php_code = implode( ' ', $php_files );
 
-		checkcount();
+		campuspress_checkcount();
 
 		$cdn_list = array(
 			'bootstrap-maxcdn'      => 'maxcdn.bootstrapcdn.com/bootstrap',

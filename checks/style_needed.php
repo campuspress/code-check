@@ -1,5 +1,5 @@
 <?php
-class Style_Needed implements themecheck {
+class CampusPress_Style_Needed implements themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
@@ -25,7 +25,7 @@ class Style_Needed implements themecheck {
 		);
 
 		foreach ($checks as $key => $check) {
-			checkcount();
+			campuspress_checkcount();
 			if ( !preg_match( '/' . $key . '/i', $css, $matches ) ) {
 				$this->error[] = "<span class='tc-lead tc-required'>" . __('REQUIRED', 'theme-check' ) . "</span>:" . $check;
 				$ret = false;

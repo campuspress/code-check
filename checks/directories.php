@@ -1,6 +1,6 @@
 <?php
 
-class DirectoriesCheck implements themecheck {
+class CampusPress_DirectoriesCheck implements themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
@@ -9,17 +9,17 @@ class DirectoriesCheck implements themecheck {
 		$found = false;
 
 		foreach ( $php_files as $name => $file ) {
-			checkcount();
+			campuspress_checkcount();
 			if ( strpos( $name, '.git' ) !== false || strpos( $name, '.svn' ) !== false ) $found = true;
 		}
 
 		foreach ( $css_files as $name => $file ) {
-			checkcount();
+			campuspress_checkcount();
 			if ( strpos( $name, '.git' ) !== false || strpos( $name, '.svn' ) !== false || strpos( $name, '.hg' ) !== false || strpos( $name, '.bzr' ) !== false ) $found = true;
 		}
 
 		foreach ( $other_files as $name => $file ) {
-			checkcount();
+			campuspress_checkcount();
 			if ( strpos( $name, '.git' ) !== false || strpos( $name, '.svn' ) !== false || strpos( $name, '.hg' ) !== false || strpos( $name, '.bzr' ) !== false ) $found = true;
 		}
 
