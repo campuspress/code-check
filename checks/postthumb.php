@@ -1,6 +1,6 @@
 <?php
 
-class CampusPress_PostThumbnailCheck implements themecheck {
+class CampusPress_PostThumbnailCheck implements CampusPress_themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
@@ -24,4 +24,4 @@ class CampusPress_PostThumbnailCheck implements themecheck {
 
 	function getError() { return $this->error; }
 }
-$themechecks[] = new PostThumbnailCheck;
+$themechecks[] = new CampusPress_PostThumbnailCheck;

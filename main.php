@@ -122,7 +122,7 @@ function campuspress_tc_success() {
 
 function campuspress_tc_form() {
 	$themes = campuspress_tc_get_themes();
-	echo '<form action="themes.php?page=themecheck" method="post">';
+	echo '<form action="themes.php?page=campus-themecheck" method="post">';
 	echo '<select name="themename">';
 	foreach( $themes as $name => $location ) {
 		echo '<option ';

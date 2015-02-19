@@ -1,6 +1,6 @@
 <?php
 // recommended deprecations checks... After some time, these will move into deprecated.php and become required.
-class CampusPress_Deprecated_Recommended implements themecheck {
+class CampusPress_Deprecated_Recommended implements CampusPress_themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
@@ -57,4 +57,4 @@ class CampusPress_Deprecated_Recommended implements themecheck {
 
 	function getError() { return $this->error; }
 }
-$themechecks[] = new Deprecated_Recommended;
+$themechecks[] = new CampusPress_Deprecated_Recommended;

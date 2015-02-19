@@ -1,6 +1,6 @@
 <?php
 
-class CampusPress_DirectoriesCheck implements themecheck {
+class CampusPress_DirectoriesCheck implements CampusPress_themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
@@ -33,4 +33,4 @@ class CampusPress_DirectoriesCheck implements themecheck {
 
 	function getError() { return $this->error; }
 }
-$themechecks[] = new DirectoriesCheck;
+$themechecks[] = new CampusPress_DirectoriesCheck;

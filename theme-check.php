@@ -31,7 +31,7 @@ class CampusPress_ThemeCheckMain {
 	}
 
 	function themecheck_add_page() {
-		$page = add_theme_page( 'Theme Check', 'Theme Check', 'manage_options', 'themecheck', array( $this, 'themecheck_do_page' ) );
+		$page = add_theme_page( 'Theme Check', 'Theme Check', 'manage_options', 'campus-themecheck', array( $this, 'themecheck_do_page' ) );
 		add_action('admin_print_styles-' . $page, array( $this, 'load_styles' ) );
 	}
 
@@ -67,4 +67,4 @@ class CampusPress_ThemeCheckMain {
 		echo '</div>';
 	}
 }
-new ThemeCheckMain;
+new CampusPress_ThemeCheckMain;

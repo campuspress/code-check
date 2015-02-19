@@ -2,7 +2,7 @@
 
 // check for various I18N errors
 
-class CampusPress_I18NCheck implements themecheck {
+class CampusPress_I18NCheck implements CampusPress_themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
@@ -61,4 +61,4 @@ class CampusPress_I18NCheck implements themecheck {
 
 	function getError() { return $this->error; }
 }
-$themechecks[] = new I18NCheck;
+$themechecks[] = new CampusPress_I18NCheck;

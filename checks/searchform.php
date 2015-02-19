@@ -1,6 +1,6 @@
 <?php
 
-class CampusPress_SearchFormCheck implements themecheck {
+class CampusPress_SearchFormCheck implements CampusPress_themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
@@ -23,4 +23,4 @@ class CampusPress_SearchFormCheck implements themecheck {
 
 	function getError() { return $this->error; }
 }
-$themechecks[] = new SearchFormCheck;
+$themechecks[] = new CampusPress_SearchFormCheck;

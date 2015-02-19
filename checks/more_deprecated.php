@@ -4,7 +4,7 @@
  * Checks for the use of deprecated function parameters.
  */
 
-class CampusPress_More_Deprecated implements themecheck {
+class CampusPress_More_Deprecated implements CampusPress_themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
@@ -61,4 +61,4 @@ class CampusPress_More_Deprecated implements themecheck {
 
 	function getError() { return $this->error; }
 }
-$themechecks[] = new More_Deprecated;
+$themechecks[] = new CampusPress_More_Deprecated;

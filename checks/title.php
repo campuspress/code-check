@@ -7,7 +7,7 @@
  *
  * See: http://make.wordpress.org/themes/guidelines/guidelines-theme-check/
  */
-class CampusPress_Title_Checks implements themecheck {
+class CampusPress_Title_Checks implements CampusPress_themecheck {
     protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
@@ -54,4 +54,4 @@ class CampusPress_Title_Checks implements themecheck {
 	function getError() { return $this->error; }
 }
 
-$themechecks[] = new Title_Checks;
+$themechecks[] = new CampusPress_Title_Checks;

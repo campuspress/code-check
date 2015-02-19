@@ -1,6 +1,6 @@
 <?php
 
-class CampusPress_CommentPaginationCheck implements themecheck {
+class CampusPress_CommentPaginationCheck implements CampusPress_themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
@@ -21,4 +21,4 @@ class CampusPress_CommentPaginationCheck implements themecheck {
 
 	function getError() { return $this->error; }
 }
-$themechecks[] = new CommentPaginationCheck;
+$themechecks[] = new CampusPress_CommentPaginationCheck;

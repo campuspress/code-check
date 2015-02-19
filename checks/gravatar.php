@@ -1,6 +1,6 @@
 <?php
 
-class CampusPress_GravatarCheck implements themecheck {
+class CampusPress_GravatarCheck implements CampusPress_themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
@@ -21,4 +21,4 @@ class CampusPress_GravatarCheck implements themecheck {
 
 	function getError() { return $this->error; }
 }
-$themechecks[] = new GravatarCheck;
+$themechecks[] = new CampusPress_GravatarCheck;

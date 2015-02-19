@@ -1,6 +1,6 @@
 <?php
 
-class CampusPress_Constants implements themecheck {
+class CampusPress_Constants implements CampusPress_themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
@@ -30,4 +30,4 @@ class CampusPress_Constants implements themecheck {
 
 	function getError() { return $this->error; }
 }
-$themechecks[] = new Constants;
+$themechecks[] = new CampusPress_Constants;

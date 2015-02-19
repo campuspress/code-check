@@ -1,5 +1,5 @@
 <?php
-class CampusPress_File_Checks implements themecheck {
+class CampusPress_File_Checks implements CampusPress_themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
@@ -63,4 +63,4 @@ class CampusPress_File_Checks implements themecheck {
 
 	function getError() { return $this->error; }
 }
-$themechecks[] = new File_Checks;
+$themechecks[] = new CampusPress_File_Checks;

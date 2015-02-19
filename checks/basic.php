@@ -1,7 +1,7 @@
 <?php
 
 // do some basic checks for strings
-class CampusPress_Basic_Checks implements themecheck {
+class CampusPress_Basic_Checks implements CampusPress_themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files) {
@@ -44,4 +44,4 @@ class CampusPress_Basic_Checks implements themecheck {
 	function getError() { return $this->error; }
 }
 
-$themechecks[] = new Basic_Checks;
+$themechecks[] = new CampusPress_Basic_Checks;

@@ -1,6 +1,6 @@
 <?php
 
-class CampusPress_TagCheck implements themecheck {
+class CampusPress_TagCheck implements CampusPress_themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
@@ -19,4 +19,4 @@ class CampusPress_TagCheck implements themecheck {
 
 	function getError() { return $this->error; }
 }
-$themechecks[] = new TagCheck;
+$themechecks[] = new CampusPress_TagCheck;

@@ -1,6 +1,6 @@
 <?php
 
-class CampusPress_EditorStyleCheck implements themecheck {
+class CampusPress_EditorStyleCheck implements CampusPress_themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
@@ -18,4 +18,4 @@ class CampusPress_EditorStyleCheck implements themecheck {
 
 	function getError() { return $this->error; }
 }
-$themechecks[] = new EditorStyleCheck;
+$themechecks[] = new CampusPress_EditorStyleCheck;

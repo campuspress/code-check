@@ -1,5 +1,5 @@
 <?php
-class CampusPress_IframeCheck implements themecheck {
+class CampusPress_IframeCheck implements CampusPress_themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files ) {
@@ -26,4 +26,4 @@ class CampusPress_IframeCheck implements themecheck {
 
 	function getError() { return $this->error; }
 }
-$themechecks[] = new IframeCheck;
+$themechecks[] = new CampusPress_IframeCheck;

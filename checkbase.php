@@ -8,7 +8,7 @@ global $checkcount;
 $checkcount = 0;
 
 // interface that all checks should implement
-interface themecheck
+interface CampusPress_themecheck
 {
 	// should return true for good/okay/acceptable, false for bad/not-okay/unacceptable
 	public function check( $php_files, $css_files, $other_files );
@@ -29,7 +29,7 @@ function campuspress_run_themechecks($php, $css, $other) {
 	global $themechecks;
 	$pass = true;
 	foreach($themechecks as $check) {
-		if ($check instanceof themecheck) {
+		if ($check instanceof CampusPress_themecheck) {
 			$pass = $pass & $check->check($php, $css, $other);
 		}
 	}
@@ -41,7 +41,7 @@ function campuspress_display_themechecks() {
 	global $themechecks;
 	$errors = array();
 	foreach ($themechecks as $check) {
-		if ($check instanceof themecheck) {
+		if ($check instanceof CampusPress_themecheck) {
 			$error = $check->getError();
 			$error = (array) $error;
 			if (!empty($error)) {
