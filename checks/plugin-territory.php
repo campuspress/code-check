@@ -21,7 +21,7 @@ class CampusPress_Plugin_Territory implements CampusPress_themecheck {
 		foreach ( $forbidden_functions as $function ) {
 			campuspress_checkcount();
 			if ( preg_match( '/[\s?]' . $function . '\(/', $php ) ) {
-				$this->error[] = '<span class="tc-lead tc-required">' . __( 'REQUIRED', 'theme-check').'</span>: ' . sprintf( __( 'The theme uses the %s function, which is plugin-territory functionality.', 'theme-check' ), '<strong>' . esc_html( $function ) . '()</strong>' ) ;
+				$this->error[] = '<span class="tc-lead tc-warning">' . __( 'WARNING', 'theme-check').'</span>: ' . sprintf( __( 'The theme uses the %s function, which is plugin-territory functionality.', 'theme-check' ), '<strong>' . esc_html( $function ) . '()</strong>' ) ;
 				$ret = false;
 			}
 		}
