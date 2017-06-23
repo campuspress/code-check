@@ -7,7 +7,7 @@ Author: igmoweb
 Author URI: http://campuspress.com
 Version: 1.1
 Requires at least: 3.8
-Tested up to: 4.7
+Tested up to: 4.7.3
 Text Domain: theme-check
 
 This plugin is a fork of Theme Check created by Otto42 and pross. There are just a few checks more for CampusPress users.
@@ -23,7 +23,7 @@ class CampusPress_ThemeCheckMain {
 	}
 
 	function tc_i18n() {
-		load_plugin_textdomain( 'theme-check', false, 'theme-check/lang' );
+		load_plugin_textdomain( 'theme-check', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/'  );
 	}
 
 	function load_styles() {
@@ -50,9 +50,11 @@ class CampusPress_ThemeCheckMain {
 		include 'checkbase.php';
 		include 'main.php';
 
-		echo '<div id="theme-check" class="wrap">';
-		echo '<div id="icon-themes" class="icon32"><br /></div><h2>Theme-Check</h2>';
-		echo '<div class="theme-check">';
+		?>
+		<div id="theme-check" class="wrap">
+		<h1><?php _ex( 'Theme Check', 'title of the main page', 'theme-check' ); ?></h1>
+		<div class="theme-check">
+		<?php
 			campuspress_tc_form();
 		if ( !isset( $_POST[ 'themename' ] ) )  {
 			campuspress_tc_intro();
@@ -61,10 +63,15 @@ class CampusPress_ThemeCheckMain {
 
 		if ( isset( $_POST[ 'themename' ] ) ) {
 			if ( isset( $_POST[ 'trac' ] ) ) define( 'TC_TRAC', true );
+			if ( defined( 'WP_MAX_MEMORY_LIMIT' ) ) {
+				@ini_set( 'memory_limit', WP_MAX_MEMORY_LIMIT );
+			}
 			campuspress_check_main( $_POST[ 'themename' ] );
 		}
-		echo '</div> <!-- .theme-check-->';
-		echo '</div>';
+		?>
+		</div> <!-- .theme-check-->
+		</div>
+		<?php
 	}
 }
 new CampusPress_ThemeCheckMain;

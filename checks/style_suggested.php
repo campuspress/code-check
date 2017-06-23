@@ -17,7 +17,7 @@ class CampusPress_Style_Suggested implements CampusPress_themecheck {
 
 		foreach ($checks as $key => $check) {
 			if ( !preg_match( '/' . $key . '/i', $css, $matches ) ) {
-				$this->error[] = sprintf('<span class="tc-lead tc-recommended">'.__('RECOMMENDED','theme-check').'</span>: '.__('<strong>%1$s</strong> is missing from your style.css header.', 'theme-check'), $check);
+				$this->error[] = sprintf('<span class="tc-lead tc-recommended">'.__('RECOMMENDED','theme-check').'</span>: '.__('%s is missing from your style.css header.', 'theme-check'), '<strong>' . $check . '</strong>' );
 			}
 		}
 

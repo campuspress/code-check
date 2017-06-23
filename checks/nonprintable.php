@@ -13,7 +13,7 @@ class CampusPress_NonPrintableCheck implements CampusPress_themecheck {
 			if ( preg_match('/[\x00-\x08\x0B-\x0C\x0E-\x1F\x80-\xFF]/', $content, $matches ) ) {
 				$filename = campuspress_tc_filename( $name );
 				$non_print = campuspress_tc_preg( '/[\x00-\x08\x0B-\x0C\x0E-\x1F\x80-\xFF]/', $name );
-				$this->error[] = sprintf('<span class="tc-lead tc-info">'.__('INFO','theme-check').'</span>: '.__('Non-printable characters were found in the <strong>%1$s</strong> file. You may want to check this file for errors.%2$s', 'theme-check'), $filename, $non_print);
+				$this->error[] = sprintf('<span class="tc-lead tc-info">'.__('INFO','theme-check').'</span>: '.__('Non-printable characters were found in the %1$s file. You may want to check this file for errors.%2$s', 'theme-check'), '<strong>' . $filename . '</strong>', $non_print);
 			}
 		}
 

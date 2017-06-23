@@ -1,0 +1,115 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CampusPress Theme Check\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-19 09:48+0100\n"
+"PO-Revision-Date: 2015-02-19 09:48+0100\n"
+"Last-Translator: Ignacio <igmoweb@gmail.com>\n"
+"Language-Team: CampusPress\n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../campus-check.php:9
+msgid ""
+"Don't ever change wp_feed_cache_transient_lifetime (hook to the filter)."
+msgstr ""
+
+#: ../campus-check.php:10
+msgid ""
+"Do not list every table in the database (you don't want to millions of "
+"tables in the list."
+msgstr ""
+
+#: ../campus-check.php:11
+msgid "Do not create/modify tables for themes."
+msgstr ""
+
+#: ../campus-check.php:12
+msgid "Do not remove roles."
+msgstr ""
+
+#: ../campus-check.php:13
+msgid "Do not flush rewrite rules."
+msgstr ""
+
+#: ../campus-check.php:14
+msgid "Do not flush cache"
+msgstr ""
+
+#: ../campus-check.php:15
+msgid "Directory disk operations are not allowed"
+msgstr ""
+
+#: ../campus-check.php:16
+msgid "Loading content from googlesyndication.com is not allowed"
+msgstr ""
+
+#: ../campus-check.php:17
+msgid "Changing ALLOW_EXTERNAL constant is not allowed"
+msgstr ""
+
+#: ../campus-check.php:18
+msgid "Do not set CURLOPT_CONNECTTIMEOUT constant"
+msgstr ""
+
+#: ../campus-check.php:19
+msgid "Changing WP_DEBUG, error_reporting or display_errors is not allowed"
+msgstr ""
+
+#: ../campus-check.php:31
+msgid "WARNING"
+msgstr ""
+
+#: ../campus-check.php:40
+msgid ""
+"Looks like you are trying to retrieve a URL using HTTP requests. Please, "
+"remember that you cannot modify timeouts on these requests"
+msgstr ""
+
+#: ../campus-check.php:41
+msgid ""
+"Make sure that you don\\t call <strong>file_get_contents</strong> to get a "
+"remote file, use <strong>campus_remote_get_contents</strong> for that purpose"
+msgstr ""
+
+#: ../campus-check.php:42
+msgid "Use DESCRIBE to describe tables not DESC"
+msgstr ""
+
+#: ../campus-check.php:43
+msgid ""
+"<strong>WPCom_Theme_Updater</strong> class is usally used for updates. "
+"Please, deactivate the class."
+msgstr ""
+
+#: ../campus-check.php:44
+msgid ""
+"Looks like you\\re making queries. Please, check that they are not expensive "
+"or replace them for native WordPress functions"
+msgstr ""
+
+#: ../campus-check.php:54
+msgid "ALERT"
+msgstr ""
+
+#: ../campus-check.php:54
+#, php-format
+msgid "<strong>%1$s</strong> was found in the file <strong>%2$s</strong>. %3$s"
+msgstr ""
+
+#: ../theme-check.php:45
+#, php-format
+msgid ""
+"<a href=\"%s\" title=\"%s\">Theme Check</a> needs to be activated before "
+"using CampusPress Theme Check."
+msgstr ""
+
+#: ../theme-check.php:45
+msgid "Install Theme Check"
+msgstr ""

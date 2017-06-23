@@ -14,9 +14,9 @@ class CampusPress_IncludeCheck implements CampusPress_themecheck {
 				campuspress_checkcount();
 				if ( preg_match( $key, $phpfile, $matches ) ) {
 					$filename = campuspress_tc_filename( $php_key );
-					$error = '/(?<![a-z0-9_])(?:requir|includ)e(?:_once)?\s?\(/';
+					$error = '/(?<![a-z0-9_])(?:requir|includ)e(?:_once)?\s?[\'"\(]/';
 					$grep = campuspress_tc_preg( $error, $php_key );
-					if ( basename($filename) !== 'functions.php' ) $this->error[] = sprintf ( '<span class="tc-lead tc-info">'.__('INFO','theme-check').'</span>: '.__('<strong>%1$s</strong> %2$s %3$s', 'theme-check' ), $filename, $check, $grep );
+					if ( basename($filename) !== 'functions.php' ) $this->error[] = sprintf ( '<span class="tc-lead tc-info">'.__('INFO','theme-check').'</span>: '.__('%1$s %2$s %3$s', 'theme-check' ), '<strong>' . $filename . '</strong>', $check, $grep );
 				}
 			}
 

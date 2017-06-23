@@ -23,7 +23,7 @@ class CampusPress_CampusPress_Checks implements CampusPress_themecheck {
 
 		foreach ( $php_files as $php_key => $phpfile ) {
 			foreach ( $checks as $key => $check ) {
-			campuspress_checkcount();
+				campuspress_checkcount();
 				if ( preg_match( $key, $phpfile, $matches ) ) {
 					$filename = campuspress_tc_filename( $php_key );
 					$error = ltrim( trim( $matches[0], '(' ) );
