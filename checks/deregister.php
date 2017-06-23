@@ -1,5 +1,5 @@
 <?php
-class CampusPress_DeregisterCheck implements themecheck {
+class CampusPress_DeregisterCheck implements CampusPress_themecheck {
 	protected $error = array();
 
 		function check( $php_files, $css_files, $other_files ) {

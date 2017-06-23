@@ -19,7 +19,14 @@ interface CampusPress_themecheck
 
 // load all the checks in the checks directory
 $dir = 'checks';
+$files = array();
 foreach (glob(dirname(__FILE__). "/{$dir}/*.php") as $file) {
+	$files[] = $file;
+}
+
+$files = apply_filters( 'campuspress_files_checks', $files );
+
+foreach ( $files as $file ) {
 	include $file;
 }
 
@@ -78,6 +85,9 @@ function campuspress_checkcount() {
 
 // some functions theme checks use
 function campuspress_tc_grep( $error, $file ) {
+	if ( ! file_exists( $file ) ) {
+		return '';
+	}
 	$lines = file( $file, FILE_IGNORE_NEW_LINES ); // Read the theme file into an array
 	$line_index = 0;
 	$bad_lines = '';
@@ -290,7 +300,38 @@ function campuspress_tc_get_themes() {
 	return $wp_themes;
 }
 
+function campuspress_tc_get_plugins() {
+	$plugins = get_plugins();
+	return $plugins;
+}
+
 function campuspress_tc_get_theme_data( $theme_file ) {
+
+	if ( ! class_exists( 'WP_Theme' ) )
+		return get_theme_data( $theme_file );
+
+	$theme = new WP_Theme( basename( dirname( $theme_file ) ), dirname( dirname( $theme_file ) ) );
+
+	$theme_data = array(
+		'Name' => $theme->get('Name'),
+		'URI' => $theme->display('ThemeURI', true, false),
+		'Description' => $theme->display('Description', true, false),
+		'Author' => $theme->display('Author', true, false),
+		'AuthorURI' => $theme->display('AuthorURI', true, false),
+		'Version' => $theme->get('Version'),
+		'Template' => $theme->get('Template'),
+		'Status' => $theme->get('Status'),
+		'Tags' => $theme->get('Tags'),
+		'Title' => $theme->get('Name'),
+		'AuthorName' => $theme->display('Author', false, false),
+		'License'	=> $theme->display( 'License', false, false),
+		'License URI'	=> $theme->display( 'License URI', false, false),
+		'Template Version'	=> $theme->display( 'Template Version', false, false)
+	);
+	return $theme_data;
+}
+
+function campuspress_tc_get_plugin_data( $theme_file ) {
 
 	if ( ! class_exists( 'WP_Theme' ) )
 		return get_theme_data( $theme_file );

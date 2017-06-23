@@ -2,7 +2,7 @@
 /**
  * This checks, if the admin bar gets hidden by the theme
  **/
-class CampusPress_NoHiddenAdminBar implements themecheck {
+class CampusPress_NoHiddenAdminBar implements CampusPress_themecheck {
 	protected $error = array();
 
 		function check( $php_files, $css_files, $other_files ) {

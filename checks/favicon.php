@@ -1,6 +1,6 @@
 <?php
 
-class CampusPress_FaviconCheck implements themecheck {
+class CampusPress_FaviconCheck implements CampusPress_themecheck {
 	protected $error = array();
 
 		function check( $php_files, $css_files, $other_files ) {

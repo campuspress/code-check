@@ -31,7 +31,7 @@ class CampusPress_CDNCheck implements CampusPress_themecheck {
 
 		foreach( $cdn_list as $cdn_slug => $cdn_url ) {
 			if ( false !== strpos( $all_code, $cdn_url ) ) {
-				$this->error[] = '<span class="tc-lead tc-recommended">' . __('RECOMMENDED','theme-check') . '</span>: ' . sprintf( __( 'Found the URL of a CDN in the code: %s. You should not load CSS or Javascript resources from a CDN, please bundle them with the theme.', 'theme-check' ), '<code>' . esc_html( $cdn_url ) . '</code>' );
+				$this->error[] = '<span class="tc-lead tc-recommended">' . __('RECOMMENDED','theme-check') . '</span>: ' . sprintf( __( 'Found the URL of a CDN in the code: %s. You should not load CSS or Javascript resources from a CDN, please bundle them with the theme/plugin.', 'theme-check' ), '<code>' . esc_html( $cdn_url ) . '</code>' );
 				//$ret = false;
 			}
 		}

@@ -1,6 +1,6 @@
 <?php
 
-class CampusPress_GeneratedCheck implements themecheck {
+class CampusPress_GeneratedCheck implements CampusPress_themecheck {
 	protected $error = array();
 
 	function check( $php_files, $css_files, $other_files) {

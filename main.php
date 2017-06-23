@@ -1,21 +1,30 @@
 <?php
-function campuspress_check_main( $theme ) {
-	global $themechecks, $data, $themename;
-	$themename = $theme;
-	$theme = get_theme_root( $theme ) . "/$theme";
-	$files = campuspress_listdir( $theme );
-	$data = campuspress_tc_get_theme_data( $theme . '/style.css' );
-	if ( $data[ 'Template' ] ) {
-		// This is a child theme, so we need to pull files from the parent, which HAS to be installed.
-		$parent = get_theme_root( $data[ 'Template' ] ) . '/' . $data['Template'];
-		if ( ! campuspress_tc_get_theme_data( $parent . '/style.css' ) ) { // This should never happen but we will check while were here!
-			echo '<h2>' . sprintf(__('Parent theme <strong>%1$s</strong> not found! You have to have parent AND child-theme installed!', 'theme-check'), $data[ 'Template' ] ) . '</h2>';
-			return;
+function campuspress_check_main( $item, $type = 'theme' ) {
+	global $themechecks, $data, $itemname;
+	$itemname = $item;
+	if ( 'theme' === $type ) {
+		$item = get_theme_root( $item ) . "/$item";
+		$data = campuspress_tc_get_theme_data( $item . '/style.css' );
+
+		$files = campuspress_listdir( $item );
+
+		if ( $data[ 'Template' ] ) {
+			// This is a child theme, so we need to pull files from the parent, which HAS to be installed.
+			$parent = get_theme_root( $data[ 'Template' ] ) . '/' . $data['Template'];
+			if ( ! campuspress_tc_get_theme_data( $parent . '/style.css' ) ) { // This should never happen but we will check while were here!
+				echo '<h2>' . sprintf(__('Parent theme <strong>%1$s</strong> not found! You have to have parent AND child-theme installed!', 'theme-check'), $data[ 'Template' ] ) . '</h2>';
+				return;
+			}
+			$parent_data = campuspress_tc_get_theme_data( $parent . '/style.css' );
+			$itemname = basename( $parent );
+			$files = array_merge( campuspress_listdir( $parent ), $files );
 		}
-		$parent_data = campuspress_tc_get_theme_data( $parent . '/style.css' );
-		$themename = basename( $parent );
-		$files = array_merge( campuspress_listdir( $parent ), $files );
 	}
+	else {
+
+	}
+
+
 
 	if ( $files ) {
 		foreach( $files as $key => $filename ) {
@@ -39,10 +48,10 @@ function campuspress_check_main( $theme ) {
 		// second loop, to display the errors
 		echo '<h2>' . __( 'Theme Info', 'theme-check' ) . ': </h2>';
 		echo '<div class="theme-info">';
-		if (file_exists( trailingslashit( WP_CONTENT_DIR . '/themes' ) . trailingslashit( basename( $theme ) ) . 'screenshot.png' ) ) {
-			$image = getimagesize( $theme . '/screenshot.png' );
-			echo '<div style="float:right" class="theme-info"><img style="max-height:180px;" src="' . trailingslashit( WP_CONTENT_URL . '/themes' ) . trailingslashit( basename( $theme ) ) . 'screenshot.png" />';
-			echo '<br /><div style="text-align:center">' . $image[0] . 'x' . $image[1] . ' ' . round( filesize( $theme . '/screenshot.png' )/1024 ) . 'k</div></div>';
+		if (file_exists( trailingslashit( WP_CONTENT_DIR . '/themes' ) . trailingslashit( basename( $item ) ) . 'screenshot.png' ) ) {
+			$image = getimagesize( $item . '/screenshot.png' );
+			echo '<div style="float:right" class="theme-info"><img style="max-height:180px;" src="' . trailingslashit( WP_CONTENT_URL . '/themes' ) . trailingslashit( basename( $item ) ) . 'screenshot.png" />';
+			echo '<br /><div style="text-align:center">' . $image[0] . 'x' . $image[1] . ' ' . round( filesize( $item . '/screenshot.png' )/1024 ) . 'k</div></div>';
 		}
 
 		echo ( !empty( $data[ 'Title' ] ) ) ? '<p><label>' . __( 'Title', 'theme-check' ) . '</label><span class="info">' . $data[ 'Title' ] . '</span></p>' : '';
@@ -152,22 +161,43 @@ function campuspress_tc_success() {
 	<?php
 }
 
-function campuspress_tc_form() {
-	$themes = campuspress_tc_get_themes();
-	echo '<form action="themes.php?page=campus-themecheck" method="post">';
+function campuspress_tc_form( $type = 'theme' ) {
+	$action = 'theme' === $type ? 'themes.php?page=campus-themecheck' : 'plugins.php?page=campus-plugincheck';
+
+	if ( 'theme' === $type ) {
+		$items = campuspress_tc_get_themes();
+	}
+	else {
+		$items = campuspress_tc_get_plugins();
+	}
+
+	echo '<form action="' . esc_attr( $action ) . '" method="post">';
 	echo '<select name="themename">';
-	foreach( $themes as $name => $location ) {
-		echo '<option ';
-		if ( isset( $_POST['themename'] ) ) {
-			echo ( $location['Stylesheet'] === $_POST['themename'] ) ? 'selected="selected" ' : '';
-		} else {
-			echo ( basename( STYLESHEETPATH ) === $location['Stylesheet'] ) ? 'selected="selected" ' : '';
-		}
-		echo ( basename( STYLESHEETPATH ) === $location['Stylesheet'] ) ? 'value="' . $location['Stylesheet'] . '" style="font-weight:bold;">' . $name . '</option>' : 'value="' . $location['Stylesheet'] . '">' . $name . '</option>';
+	foreach( $items as $name => $item ) {
+		_campuspress_tc_items_dropdown_option( $item, $name, $type );
 	}
 	echo '</select>';
 	echo '<input class="button" type="submit" value="' . __( 'Check it!', 'theme-check' ) . '" />';
 	if ( defined( 'TC_PRE' ) || defined( 'TC_POST' ) ) echo ' <input name="trac" type="checkbox" /> ' . __( 'Output in Trac format.', 'theme-check' );
 	echo '<input name="s_info" type="checkbox" /> ' . __( 'Suppress INFO.', 'theme-check' );
+	echo '<input name="type" type="hidden" value="' . esc_attr( $type ) . '" />';
 	echo '</form>';
+}
+
+function _campuspress_tc_items_dropdown_option( $item, $name, $type = 'theme' ) {
+	if ( 'theme' === $type ) {
+		echo '<option ';
+		if ( isset( $_POST['themename'] ) ) {
+			echo ( $item['Stylesheet'] === $_POST['themename'] ) ? 'selected="selected" ' : '';
+		} else {
+			echo ( basename( STYLESHEETPATH ) === $item['Stylesheet'] ) ? 'selected="selected" ' : '';
+		}
+		echo ( basename( STYLESHEETPATH ) === $item['Stylesheet'] ) ? 'value="' . $item['Stylesheet'] . '" style="font-weight:bold;">' . $name . '</option>' : 'value="' . $item['Stylesheet'] . '">' . $name . '</option>';
+	} else {
+		echo '<option ';
+		if ( isset( $_POST['themename'] ) ) {
+			echo ( $name === $_POST['themename'] ) ? 'selected="selected" ' : '';
+		}
+		echo 'value="' . $name . '">' . $item['Name'] . '</option>';
+	}
 }
