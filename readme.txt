@@ -1,13 +1,13 @@
-=== CampusPress Theme Check ===
+=== CampusPress Code Check ===
 Contributors: igmoweb
-Tags: template, theme, check, checker, tool, wordpress, wordpress.org, upload, uploader, test, guideline, review
+Tags: template, theme, plugin, check, checker, tool, wordpress, wordpress.org, upload, uploader, test, guideline, review
 Requires at least: 3.8
 Tested up to: 4.7.3
-Stable tag: 1.1
+Stable tag: 1.2
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-A simple and easy way to test your theme for all the latest WordPress standards and practices. A great theme development tool!
+A simple and easy way to test your theme or plugin for all the latest WordPress standards and practices. A great theme development tool!
 
 
 == Description ==
@@ -23,7 +23,7 @@ The tests are run through a simple admin menu and all results are displayed at o
 = How to use it? =
 
 1. Download the latest version, upload it to your wp-content/plugins and activate it in your local development installation.
-1. A new menu should appear under Appereance menu called `Theme Check`.
+1. New menus should appear under Appereance menu called `Theme Check` and under Plugins menu called `Plugin Check`.
 1. Just select the theme in the selection box and click on `Check it!`
 
 == Frequently Asked Questions ==

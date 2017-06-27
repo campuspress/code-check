@@ -21,7 +21,9 @@ function campuspress_check_main( $item, $type = 'theme' ) {
 		}
 	}
 	else {
-
+		$plugin_path = WP_PLUGIN_DIR . '/' . $item;
+		$data = get_plugin_data( $plugin_path );
+		$files = campuspress_listdir( dirname( $plugin_path ) );
 	}
 
 
@@ -46,25 +48,44 @@ function campuspress_check_main( $item, $type = 'theme' ) {
 		global $checkcount;
 
 		// second loop, to display the errors
-		echo '<h2>' . __( 'Theme Info', 'theme-check' ) . ': </h2>';
+		if ( 'theme' === $type ) {
+			echo '<h2>' . __( 'Theme Info', 'theme-check' ) . ': </h2>';
+		}
+		else {
+			echo '<h2>' . __( 'Plugin Info', 'theme-check' ) . ': </h2>';
+		}
 		echo '<div class="theme-info">';
-		if (file_exists( trailingslashit( WP_CONTENT_DIR . '/themes' ) . trailingslashit( basename( $item ) ) . 'screenshot.png' ) ) {
+		if ( 'theme' === $type && file_exists( trailingslashit( WP_CONTENT_DIR . '/themes' ) . trailingslashit( basename( $item ) ) . 'screenshot.png' ) ) {
 			$image = getimagesize( $item . '/screenshot.png' );
 			echo '<div style="float:right" class="theme-info"><img style="max-height:180px;" src="' . trailingslashit( WP_CONTENT_URL . '/themes' ) . trailingslashit( basename( $item ) ) . 'screenshot.png" />';
 			echo '<br /><div style="text-align:center">' . $image[0] . 'x' . $image[1] . ' ' . round( filesize( $item . '/screenshot.png' )/1024 ) . 'k</div></div>';
 		}
 
 		echo ( !empty( $data[ 'Title' ] ) ) ? '<p><label>' . __( 'Title', 'theme-check' ) . '</label><span class="info">' . $data[ 'Title' ] . '</span></p>' : '';
+
+		echo ( !empty( $data['Name'] ) ) ? '<p><label>' . __( 'Plugin Name', 'theme-check' ) . '</label><span class="info">' . $data['Name'] . '</span></p>' : '';
+
 		echo ( !empty( $data[ 'Version' ] ) ) ? '<p><label>' . __( 'Version', 'theme-check' ) . '</label><span class="info">' . $data[ 'Version' ] . '</span></p>' : '';
+
 		echo ( !empty( $data[ 'AuthorName' ] ) ) ? '<p><label>' . __( 'Author', 'theme-check' ) . '</label><span class="info">' . $data[ 'AuthorName' ] . '</span></p>' : '';
+		echo ( !empty( $data['Author'] ) ) ? '<p><label>' . __( 'Author', 'theme-check' ) . '</label><span class="info">' . $data['Author'] . '</span></p>' : '';
+
 		echo ( !empty( $data[ 'AuthorURI' ] ) ) ? '<p><label>' . __( 'Author URI', 'theme-check' ) . '</label><span class="info"><a href="' . $data[ 'AuthorURI' ] . '">' . $data[ 'AuthorURI' ] . '</a>' . '</span></p>' : '';
+
 		echo ( !empty( $data[ 'URI' ] ) ) ? '<p><label>' . __( 'Theme URI', 'theme-check' ) . '</label><span class="info"><a href="' . $data[ 'URI' ] . '">' . $data[ 'URI' ] . '</a>' . '</span></p>' : '';
+		echo ( !empty( $data['PluginURI'] ) ) ? '<p><label>' . __( 'Plugin URI', 'theme-check' ) . '</label><span class=info">' . $data['PluginURI'] . '</span></p>' : '';
+
 		echo ( !empty( $data[ 'License' ] ) ) ? '<p><label>' . __( 'License', 'theme-check' ) . '</label><span class="info">' . $data[ 'License' ] . '</span></p>' : '';
 		echo ( !empty( $data[ 'License URI' ] ) ) ? '<p><label>' . __( 'License URI', 'theme-check' ) . '</label><span class="info">' . $data[ 'License URI' ] . '</span></p>' : '';
 		echo ( !empty( $data[ 'Tags' ] ) ) ? '<p><label>' . __( 'Tags', 'theme-check' ) . '</label><span class="info">' . implode( $data[ 'Tags' ], ', ') . '</span></p>' : '';
+
 		echo ( !empty( $data[ 'Description' ] ) ) ? '<p><label>' . __( 'Description', 'theme-check' ) . '</label><span class="info">' . $data[ 'Description' ] . '</span></p>' : '';
 
-		if ( $data[ 'Template' ] ) {
+		echo ( !empty( $data['Network'] ) ) ? '<p><label>' . __( 'Network Only', 'theme-check' ) . '</label><span class=info">' . $data['Network'] . '</span></p>' : '';
+
+
+
+		if ( 'theme' === $type && $data[ 'Template' ] ) {
 		if ( $data['Template Version'] > $parent_data['Version'] ) {
 			echo '<p>' . sprintf(
 				__('This child theme requires at least version %1$s of theme %2$s to be installed. You only have %3$s please update the parent theme.', 'theme-check'),
@@ -87,19 +108,21 @@ function campuspress_check_main( $item, $type = 'theme' ) {
 
 		$plugins = get_plugins( '/campuspress-theme-check' );
 		$version = explode( '.', $plugins['theme-check.php']['Version'] );
+
+		$title = 'theme' === $type ? $data[ 'Title' ] : $data['Name'];
 		echo '<p>' . sprintf(
 			__(' Running %1$s tests against %2$s using Guidelines Version: %3$s Plugin revision: %4$s', 'theme-check'),
 			'<strong>' . $checkcount . '</strong>',
-			'<strong>' . $data[ 'Title' ] . '</strong>',
+			'<strong>' . $title . '</strong>',
 			'<strong>' . $version[0] . '</strong>',
 			'<strong>' . $version[1] . '</strong>'
 		) . '</p>';
 		$results = campuspress_display_themechecks();
 		if ( !$success ) {
-			echo '<h2>' . sprintf(__('One or more errors were found for %1$s.', 'theme-check'), $data[ 'Title' ] ) . '</h2>';
+			echo '<h2>' . sprintf(__('One or more errors were found for %1$s.', 'theme-check'), $title ) . '</h2>';
 		} else {
-			echo '<h2>' . sprintf(__('%1$s passed the tests', 'theme-check'), $data[ 'Title' ] ) . '</h2>';
-			campuspress_tc_success();
+			echo '<h2>' . sprintf(__('%1$s passed the tests', 'theme-check'), $title ) . '</h2>';
+			campuspress_tc_success( $type );
 		}
 		if ( !defined( 'WP_DEBUG' ) || WP_DEBUG == false ) echo '<div class="updated"><span class="tc-fail">' . __('WARNING','theme-check') . '</span> ' . __( '<strong>WP_DEBUG is not enabled!</strong> Please test your theme with <a href="https://codex.wordpress.org/Editing_wp-config.php">debug enabled</a> before you upload!', 'theme-check' ) . '</div>';
 		echo '<div class="tc-box">';
@@ -148,17 +171,29 @@ function campuspress_tc_intro() {
 	<?php
 }
 
-function campuspress_tc_success() {
-	?>
-	<div class="tc-success"><p><?php _e( 'Now your theme has passed the basic tests you need to check it properly using the test data before you upload to the WordPress Themes Directory.', 'theme-check' ); ?></p>
-	<p><?php _e( 'Make sure to review the guidelines at <a href="https://codex.wordpress.org/Theme_Review">Theme Review</a> before uploading a Theme.', 'theme-check' ); ?></p>
-	<h3><?php _e( 'Codex Links', 'theme-check' ); ?></h3>
-	<ul>
-	<li><a href="https://codex.wordpress.org/Theme_Development"><?php _e('Theme Development', 'theme-check' ); ?></a></li>
-	<li><a href="https://wordpress.org/support/forum/5"><?php _e('Themes and Templates forum', 'theme-check' ); ?></a></li>
-	<li><a href="https://codex.wordpress.org/Theme_Unit_Test"><?php _e('Theme Unit Tests', 'theme-check' ); ?></a></li>
-	</ul></div>
-	<?php
+function campuspress_tc_success( $type = 'theme' ) {
+	if ( 'theme' === $type ) {
+		?>
+		<div class="tc-success"><p><?php _e( 'Now your theme has passed the basic tests you need to check it properly using the test data before you upload to CampusPress.', 'theme-check' ); ?></p>
+			<p><?php _e( 'Make sure to review the guidelines at <a href="https://codex.wordpress.org/Theme_Review">Theme Review</a> before uploading a Theme.', 'theme-check' ); ?></p>
+			<h3><?php _e( 'Codex Links', 'theme-check' ); ?></h3>
+			<ul>
+				<li><a href="https://codex.wordpress.org/Theme_Development"><?php _e('Theme Development', 'theme-check' ); ?></a></li>
+				<li><a href="https://wordpress.org/support/forum/5"><?php _e('Themes and Templates forum', 'theme-check' ); ?></a></li>
+				<li><a href="https://codex.wordpress.org/Theme_Unit_Test"><?php _e('Theme Unit Tests', 'theme-check' ); ?></a></li>
+			</ul></div>
+		<?php
+	}
+	else {
+		?>
+		<div class="tc-success"><p><?php _e( 'Now your plugin has passed the basic tests you need to check it properly using the test data before you upload to CampusPress.', 'theme-check' ); ?></p>
+			<h3><?php _e( 'Codex Links', 'theme-check' ); ?></h3>
+			<ul>
+				<li><a href="https://codex.wordpress.org/Writing_a_Plugin"><?php _e('Theme Development', 'theme-check' ); ?></a></li>
+			</ul></div>
+		<?php
+	}
+
 }
 
 function campuspress_tc_form( $type = 'theme' ) {

@@ -15,7 +15,7 @@ class CampusPress_IncludedPlugins implements CampusPress_themecheck {
 			'\.zip'	=> __( 'Zipped Plugin', 'theme-check' ),
 		);
 
-		checkcount();
+		campuspress_checkcount();
 
 		foreach ( $blacklist as $file => $reason ) {
 			if ( $filename = preg_grep( '/' . $file . '/', $filenames ) ) {

@@ -105,6 +105,31 @@ function campuspress_tc_grep( $error, $file ) {
 	return str_replace( $error, '<span class="tc-grep">' . $error . '</span>', $bad_lines );
 }
 
+function campuspress_tc_grep_preg( $preg, $file ) {
+	if ( ! file_exists( $file ) ) {
+		return '';
+	}
+	$lines = file( $file, FILE_IGNORE_NEW_LINES ); // Read the theme file into an array
+	$line_index = 0;
+	$bad_lines = '';
+	foreach( $lines as $this_line )	{
+		if ( preg_match( $preg, $this_line, $matches, PREG_OFFSET_CAPTURE ) ) {
+			$this_line = str_replace( '"', "'", $this_line );
+			foreach ( $matches as $match ) {
+				$pre = substr( $this_line, 0, $match[1] );
+				$pre = ltrim( htmlspecialchars( $pre ) );
+				$characters_count = strlen( $match[0] );
+				$bad_lines .= "<pre class='tc-grep'>". __("Line ", "theme-check") . ( $line_index+1 ) . ": " . $pre;
+				$bad_lines .= '<span class="tc-grep">' . htmlspecialchars( substr( $this_line, $match[1], $characters_count ) ) . '</span>';
+				$bad_lines .= htmlspecialchars( substr( $this_line, $match[1] + $characters_count, 75 ) );
+				$bad_lines .= "</pre>";
+			}
+		}
+		$line_index++;
+	}
+	return $bad_lines;
+}
+
 function campuspress_tc_preg( $preg, $file ) {
 	if ( ! file_exists( $file ) ) {
 		return '';
@@ -306,32 +331,6 @@ function campuspress_tc_get_plugins() {
 }
 
 function campuspress_tc_get_theme_data( $theme_file ) {
-
-	if ( ! class_exists( 'WP_Theme' ) )
-		return get_theme_data( $theme_file );
-
-	$theme = new WP_Theme( basename( dirname( $theme_file ) ), dirname( dirname( $theme_file ) ) );
-
-	$theme_data = array(
-		'Name' => $theme->get('Name'),
-		'URI' => $theme->display('ThemeURI', true, false),
-		'Description' => $theme->display('Description', true, false),
-		'Author' => $theme->display('Author', true, false),
-		'AuthorURI' => $theme->display('AuthorURI', true, false),
-		'Version' => $theme->get('Version'),
-		'Template' => $theme->get('Template'),
-		'Status' => $theme->get('Status'),
-		'Tags' => $theme->get('Tags'),
-		'Title' => $theme->get('Name'),
-		'AuthorName' => $theme->display('Author', false, false),
-		'License'	=> $theme->display( 'License', false, false),
-		'License URI'	=> $theme->display( 'License URI', false, false),
-		'Template Version'	=> $theme->display( 'Template Version', false, false)
-	);
-	return $theme_data;
-}
-
-function campuspress_tc_get_plugin_data( $theme_file ) {
 
 	if ( ! class_exists( 'WP_Theme' ) )
 		return get_theme_data( $theme_file );

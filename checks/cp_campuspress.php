@@ -12,7 +12,7 @@ class CampusPress_CampusPress_Checks implements CampusPress_themecheck {
 			'/remove_role\s?\(/' => __( 'Do not remove roles.', 'theme-check' ),
 			'/flush_rules|flush_rewrite_rules/' => __( 'Do not flush rewrite rules.', 'theme-check' ),
 			'/wp_cache_flush/' => __( 'Do not flush cache', 'theme-check' ),
-			'/chdir|chroot|closedir|dir\s?\(|glob\s?\(|getcwd|opendir|readdir|rewinddir|scandir/' => __( 'Directory disk operations are not allowed', 'theme-check' ),
+			'/chdir|chroot|closedir|[^_]dir\s?\(|glob\s?\(|getcwd|opendir|readdir|rewinddir|scandir/' => __( 'Directory disk operations are not allowed', 'theme-check' ),
 			'/googlesyndication\.com/' => __( 'Loading content from googlesyndication.com is not allowed', 'theme-check' ),
 			'/ALLOW_EXTERNAL/' => __( 'Changing ALLOW_EXTERNAL constant is not allowed', 'theme-check' ),
 			'/CURLOPT_CONNECTTIMEOUT/' => __( 'Do not set CURLOPT_CONNECTTIMEOUT constant', 'theme-check' ),
@@ -27,7 +27,7 @@ class CampusPress_CampusPress_Checks implements CampusPress_themecheck {
 				if ( preg_match( $key, $phpfile, $matches ) ) {
 					$filename = campuspress_tc_filename( $php_key );
 					$error = ltrim( trim( $matches[0], '(' ) );
-					$grep = campuspress_tc_grep( $error, $php_key );
+					$grep = campuspress_tc_grep_preg( $key, $php_key );
 					$this->error[] = sprintf('<span class="tc-lead tc-warning">'. __( 'WARNING', 'theme-check' ) . '</span>: Found <strong>%1$s</strong> in the file <strong>%2$s</strong>. %3$s. %4$s', $error, $filename, $check, $grep );
 					$ret = false;
 				}

@@ -23,7 +23,7 @@ The tests are run through a simple admin menu and all results are displayed at o
 = How to use it? =
 
 1. Download the latest version, upload it to your wp-content/plugins and activate it in your local development installation.
-1. A new menu should appear under Appereance menu called `Theme Check`.
+1. A new menu should appear under Appereance menu called `Theme Check` and `Plugin Check` under Plugins menu.
 1. Just select the theme in the selection box and click on `Check it!`
 
 == Frequently Asked Questions ==

@@ -5,7 +5,7 @@ class CampusPress_Check_URI implements CampusPress_themecheck {
 
 	function check( $php_files, $css_files, $other_files ) {
 
-		checkcount();
+		campuspress_checkcount();
 		$ret = true;
 		global $data;
 
