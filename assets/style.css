@@ -11,8 +11,19 @@
 .tc-info {
 	color: blue;
 }
+.tc-grep {
+	background: #333;
+	color: #FFD22E;
+	margin:0;
+}
+.tc-grep:not(span) {
+	padding:5px;
+	border-bottom: 1px dotted black;
+}
 .tc-grep span {
-	background: yellow;
+	background: white;
+	color: black;
+
 }
 pre {
 	white-space: pre-wrap;
@@ -25,41 +36,32 @@ pre {
 form {
 	margin:20px auto;
 }
+form input[type="checkbox"] {
+	margin-left:20px;
+}
 .theme-check {
-	margin:20px auto;
-	border:1px solid #dfdfdf;
-	-moz-border-radius:5px;
-	-khtml-border-radius:5px;
-	-webkit-border-radius:5px;
-	border-radius:5px;
 }
 .theme-check h2 {
-	margin:0 0 20px 0;
-	padding:0 20px;
-	background:#dfdfdf url("gray-grad.png") repeat-x left top;
-	font-size:20px;
-	border-bottom:1px solid #ccc;
 }
 .theme-check p {
-	padding:5px 20px;
 }
 .theme-check form {
-	margin-left:20px;
 }
 .theme-check ul {
-	margin-left:20px;
 }
 .theme-check h3 {
-	margin:0 0 10px 20px;
-	padding:0;
 }
 .theme-check ul {
 	margin-bottom:10px;
 }
+
+.theme-check ul li{
+	margin-bottom: 15px;
+}
 .theme-info {
 	padding:10px;
 	border:1px solid #dfdfdf;
-	margin:10px 20px 0 20px;
+	margin:10px 20px 0 0px;
 }
 .theme-info p {
 	padding:0;
