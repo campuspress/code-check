@@ -5,7 +5,7 @@ Plugin URI: https://github.com/igmoweb/theme-check
 Description: A simple and easy way to test your theme pr plugin for all the latest WordPress standards and practices. A great theme development tool!
 Author: igmoweb
 Author URI: http://campuspress.com
-Version: 1.2
+Version: 1.3
 Requires at least: 3.8
 Tested up to: 4.8
 Text Domain: theme-check
