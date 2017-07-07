@@ -1,10 +1,10 @@
 <?php
 /*
-Plugin Name: CampusPress Theme and Plugin Check
-Plugin URI: https://github.com/igmoweb/theme-check
-Description: A simple and easy way to test your theme pr plugin for all the latest WordPress standards and practices. A great theme development tool!
-Author: igmoweb
-Author URI: http://campuspress.com
+Plugin Name: Code Check
+Plugin URI: https://github.com/campuspress/code-check
+Description: Checks plugins and themes for requirements needed to pass in order to be supported on sites hosted by CampusPress and WPMU DEV Hosting.
+Author: CampusPress
+Author URI: https://campuspress.com
 Version: 1.3
 Requires at least: 3.8
 Tested up to: 4.8
