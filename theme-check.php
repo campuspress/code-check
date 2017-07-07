@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: CampusPress Theme and Plugin Check
+Plugin Name: Incsub Code Check
 Plugin URI: https://github.com/igmoweb/theme-check
 Description: A simple and easy way to test your theme pr plugin for all the latest WordPress standards and practices. A great theme development tool!
 Author: igmoweb
