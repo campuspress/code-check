@@ -2,7 +2,7 @@
 Contributors: igmoweb
 Tags: template, theme, plugin, check, checker, tool, wordpress, wordpress.org, upload, uploader, test, guideline, review
 Requires at least: 3.8
-Tested up to: 4.7.3
+Tested up to: 4.8
 Stable tag: 1.2
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -16,14 +16,14 @@ This plugin is a fork of Theme Check created by Otto42 and pross. There are just
 **Note: Please, do not use this plugin if you don't have a site in CampusPress network.
 You can found the original Theme Check [here](https://wordpress.org/plugins/theme-check/)**
 
-The theme check plugin is an easy way to test your theme and make sure it's up to spec with the latest [theme review](http://codex.wordpress.org/Theme_Review) standards and CampusPress standards.
+It checks plugins and themes against WordPress.org guidelines as well as additional requirements needed to pass in order to be supported on sites hosted by CampusPress and WPMU DEV Hosting.
 
-The tests are run through a simple admin menu and all results are displayed at once. Before uploading any Theme to CampusPress, please make sure that you run the check and fix any WARNING you see. ALERTS, INFO, etc will need an additional check from CampusPress staff.
+Any 'Warnings' listed should be fixed before submitting for further manual review.
 
 = How to use it? =
 
 1. Download the latest version, upload it to your wp-content/plugins and activate it in your local development installation.
-1. New menus should appear under Appereance menu called `Theme Check` and under Plugins menu called `Plugin Check`.
+1. New menus should appear under Appereance menu called Theme Check and under Plugins menu called Plugin Check.
 1. Just select the theme in the selection box and click on `Check it!`
 
 == Frequently Asked Questions ==
