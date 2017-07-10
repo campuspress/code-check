@@ -67,13 +67,17 @@ function campuspress_check_main( $item, $type = 'theme' ) {
 
 		echo ( !empty( $data[ 'Version' ] ) ) ? '<p><label>' . __( 'Version', 'theme-check' ) . '</label><span class="info">' . $data[ 'Version' ] . '</span></p>' : '';
 
-		echo ( !empty( $data[ 'AuthorName' ] ) ) ? '<p><label>' . __( 'Author', 'theme-check' ) . '</label><span class="info">' . $data[ 'AuthorName' ] . '</span></p>' : '';
-		echo ( !empty( $data['Author'] ) ) ? '<p><label>' . __( 'Author', 'theme-check' ) . '</label><span class="info">' . $data['Author'] . '</span></p>' : '';
+		if ( 'theme' === $type ) {
+			echo ( !empty( $data[ 'AuthorName' ] ) ) ? '<p><label>' . __( 'Author', 'theme-check' ) . '</label><span class="info">' . $data[ 'AuthorName' ] . '</span></p>' : '';
+		}
+		else {
+			echo ( !empty( $data['Author'] ) ) ? '<p><label>' . __( 'Author', 'theme-check' ) . '</label><span class="info">' . $data['Author'] . '</span></p>' : '';
+		}
 
 		echo ( !empty( $data[ 'AuthorURI' ] ) ) ? '<p><label>' . __( 'Author URI', 'theme-check' ) . '</label><span class="info"><a href="' . $data[ 'AuthorURI' ] . '">' . $data[ 'AuthorURI' ] . '</a>' . '</span></p>' : '';
 
 		echo ( !empty( $data[ 'URI' ] ) ) ? '<p><label>' . __( 'Theme URI', 'theme-check' ) . '</label><span class="info"><a href="' . $data[ 'URI' ] . '">' . $data[ 'URI' ] . '</a>' . '</span></p>' : '';
-		echo ( !empty( $data['PluginURI'] ) ) ? '<p><label>' . __( 'Plugin URI', 'theme-check' ) . '</label><span class=info">' . $data['PluginURI'] . '</span></p>' : '';
+		echo ( !empty( $data['PluginURI'] ) ) ? '<p><label>' . __( 'Plugin URI', 'theme-check' ) . '</label><span class=info"><a href="' . esc_url( $data['PluginURI'] ) . '">' . $data['PluginURI'] . '</a></span></p>' : '';
 
 		echo ( !empty( $data[ 'License' ] ) ) ? '<p><label>' . __( 'License', 'theme-check' ) . '</label><span class="info">' . $data[ 'License' ] . '</span></p>' : '';
 		echo ( !empty( $data[ 'License URI' ] ) ) ? '<p><label>' . __( 'License URI', 'theme-check' ) . '</label><span class="info">' . $data[ 'License URI' ] . '</span></p>' : '';
