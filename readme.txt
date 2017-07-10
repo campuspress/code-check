@@ -1,5 +1,5 @@
 === CampusPress Code Check ===
-Contributors: igmoweb
+Contributors: igmoweb, campuspress
 Tags: template, theme, plugin, check, checker, tool, wordpress, wordpress.org, upload, uploader, test, guideline, review
 Requires at least: 3.8
 Tested up to: 4.8
