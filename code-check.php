@@ -5,7 +5,7 @@ Plugin URI: https://github.com/campuspress/code-check
 Description: Checks plugins and themes for requirements needed to pass in order to be supported on sites hosted by CampusPress and WPMU DEV Hosting.
 Author: CampusPress
 Author URI: https://campuspress.com
-Version: 1.3
+Version: 1.2.1
 Requires at least: 3.8
 Tested up to: 4.8
 Text Domain: theme-check

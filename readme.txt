@@ -3,12 +3,11 @@ Contributors: igmoweb, campuspress
 Tags: template, theme, plugin, check, checker, tool, wordpress, wordpress.org, upload, uploader, test, guideline, review
 Requires at least: 3.8
 Tested up to: 4.8
-Stable tag: 1.2
+Stable tag: 1.2.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 A simple and easy way to test your theme or plugin for all the latest WordPress standards and practices. A great theme development tool!
-
 
 == Description ==
 This plugin is a fork of Theme Check created by Otto42 and pross. There are just a few checks more for CampusPress users.
